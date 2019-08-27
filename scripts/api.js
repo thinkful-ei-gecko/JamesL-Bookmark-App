@@ -27,9 +27,15 @@ const api = (function(){
       });
   }
 
-  const getBookmarks = function(){
-    return fetch(baseUrl)
-  };
+  const getBookmarks = () => {
+    return fetch('https://thinkful-list-api.herokuapp.com/jamesl/bookmarks')
+      .then(res => res.json())
+      .then(bookmarks => {
+        populateStore(bookmarks);
+        postBookmark();
+      })
+      .catch(err => console.log(err))
+  }
 
   const createBookmark = function(name){
     let newData = JSON.stringify({
