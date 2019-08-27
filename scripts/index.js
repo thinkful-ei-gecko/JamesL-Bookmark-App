@@ -1,11 +1,12 @@
 'use strict';
 
 $(document).ready(function(){
+  bookmarks.bindEventListeners();
   api.getBookmarks()
-  .then(res => res.json())
-  .then(bookmarks => bookmarks.forEach(bookmark => {
-    store.addBookmark(bookmark);
-    bookmarks.render();
-  }));
-})
+  .then(response => response.json())
+  .then(items => {
+      items.forEach(item => store.addBookmark(item));
+      bookmarks.renderBookmarks(store.bookmarks);
+  })
+});
 

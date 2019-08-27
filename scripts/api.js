@@ -1,6 +1,6 @@
 
 const api = (function(){
-  const baseUrl = 'https://thinkful-list-api.herokuapp.com/jamesl/bookmarks'
+  const baseUrl = 'https://thinkful-list-api.herokuapp.com/jameslee/bookmarks'
   
   function listApiFetch(...args) {
     let error;
@@ -28,49 +28,44 @@ const api = (function(){
   }
 
   const getBookmarks = () => {
-    return fetch('https://thinkful-list-api.herokuapp.com/jamesl/bookmarks')
-      .then(res => res.json())
-      .then(bookmarks => {
-        populateStore(bookmarks);
-        postBookmark();
-      })
-      .catch(err => console.log(err))
+    return fetch(baseUrl)
   }
 
-  const createBookmark = function(name){
-    let newData = JSON.stringify({
-      name,
-    });
+  const createBookmark = function(data){
     return listApiFetch(`${baseUrl}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: newData
+      body: data
     });
   };
 
-  const updateBookmark = function(id, updateItem){
-    let newData = JSON.stringify(updateItem);
-    return listApiFetch(`${baseUrl}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'applicatin/json'
-      },
-      body: newData
-    });
-  };
+  // const updateBookmark = function(id, updateItem){
+  //   return listApiFetch(`${baseUrl}`, {
+  //     method: 'PATCH',
+  //     headers: {
+  //       'Content-Type': 'applicatin/json'
+  //     },
+  //     body: newData
+  //   });
+  // };
 
   const deleteBookmark = function(id){
-    return listApiFetch(`${baseUrl}`, {
+    return listApiFetch(`${baseUrl}/${id}`, {
       method: 'DELETE'
-    });
+    })
+    // .then(res => res.json())
+    // .then(jsonData => {
+    //   store.removeBookmark(id);
+    //   bookmarks.renderBookmarks();
+    // })
   };
 
   return{
     getBookmarks,
     createBookmark,
-    updateBookmark,
+    // updateBookmark,
     deleteBookmark
   };
 }());
