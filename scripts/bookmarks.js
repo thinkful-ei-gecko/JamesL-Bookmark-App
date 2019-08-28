@@ -13,10 +13,10 @@ const bookmarks = (function(){
     if(bookmark.expanded === true){
       return `
         <li id="bookmark-element" data-item-id="${bookmark.id}">
-          <span class="bookmark-title">${bookmark.title}</span><br>
-          <span class="rating">Rating: ${bookmark.rating} stars</span><br>
-          <span class="description">Description: ${bookmark.desc}</span><br>
-          <span class="bookmark-url">Visit website: <a class="links" href="url">${bookmark.url}</a></span><br>
+          <span class="bookmark-title"><span class="refer">Title: </span>${bookmark.title}</span>
+          <span class="rating"><span class="refer">Rating: </span>${bookmark.rating} stars</span><br>
+          <span class="description"><span class="refer">Description: </span>${bookmark.desc}</span><br>
+          <span class="bookmark-url"><span class="refer">Visit website: </span><a class="links" href="url">${bookmark.url}</a></span><br>
           <button class="details">Details</button>
           <button class="delete-bookmark">Delete</button>
         </li>
@@ -25,8 +25,8 @@ const bookmarks = (function(){
     else{
       return `
       <li id="bookmark-element" data-item-id="${bookmark.id}">
-          <span class="bookmark-title">${bookmark.title}</span><br>
-          <span class="rating">Rating: ${bookmark.rating} stars</span>
+          <span class="bookmark-title"><span class="refer">Title: </span>${bookmark.title}</span>
+          <span class="rating"><span class="refer">Rating: </span>${bookmark.rating} stars</span><br>
           <button class="details">Details</button>
       </li>
     `}
@@ -42,19 +42,19 @@ const bookmarks = (function(){
         <fieldset>
           <legend>Create a Bookmark:</legend>
           <div class="input-group">
-            <label for="title">Title:</label>
+            <label for="title">Title:  </label>
             <input id="title" name="title" type="text" placeholder="Title" required="true" />
           </div>
           <div class="input-group">
-            <label for="url-input">URL:</label>
+            <label for="url-input">URL:  </label>
             <input id="url-input" name="url" type="url" placeholder="https://example.com" />
           </div>
           <div class="input-group">
-            <label for="description">Description:</label>
+            <label for="description">Description:  </label>
             <input id="description" name="desc" type="text" placeholder="Add description here" />
           </div>
-          <form class="input-group" role"radiogroup">
-            Rating: 
+          <form class="input-group" role="radiogroup">
+            Rating: <br>
             <input type="radio" name="rating" role="radio" id="bookmark-rating" value="5" checked>5 Stars
             <input type="radio" name="rating" role="radio" id="bookmark-rating" value="4">4 Stars
             <input type="radio" name="rating" role="radio" id="bookmark-rating" value="3">3 Stars
@@ -64,7 +64,7 @@ const bookmarks = (function(){
 
           <div class="error-display"></div>
           <div class="submit-input">
-            <input type="submit" value="Add" />
+            <button type="submit">Add</button>
           </div>
         </fieldset>
       </form>
@@ -96,9 +96,7 @@ const bookmarks = (function(){
         .then((bookmarkElements) => {
           store.addBookmark(bookmarkElements);
           renderBookmarks(store.bookmarks);
-          $('#title').val('');
-          $('#url-input').val('');
-          $('#description').val('');
+          $('.bookmark-creator')[0].reset();
         });
     });
   };

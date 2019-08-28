@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  color: #303030;
+  background: #c7fcf1;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 5px;
+  margin-bottom: 5px;
+  
+}
+
+#description {
+  width: 90px;
+  height: 60px;
+  
+}
+
+
+fieldset {
+  margin-top: 24px;
+  border: 1px solid #3b3a36;
+  border-radius: 10px;
+  text-align: center;
+}
+
+fieldset .submit-input {
+  border-color: black
+}
+
+.dots {
+  text-align: center;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.dots span {
+  font-size: 35px;
+}
+
+ul{
+  padding: 0;
+  margin: 20px;
+}
+
+button[type="submit"] {
+  border-color: black;
+  margin-top: 5px;
+}
+
+li {
+  border-style: solid;
+  border-color: #9c9987;
+  padding: 10px;
+  margin: 10px;
+  list-style: none;
+  text-align: center;
+}
+
+.addBookmark {
+  font-size: 14px;
+  border-color: #303030;
+}
+
+
+.details {
+  margin-top: 10px;
+  width: 20%;
+  border-color: black;
+}
+
+.delete-bookmark {
+  width: 20%;
+  border-color: red;
+}
+
+.refer {
+  font-weight: bold;
+}
+
+
+
+.bookmark-title {
+  float: left;
+}
+
+.rating {
+  float: right;
+}
+
