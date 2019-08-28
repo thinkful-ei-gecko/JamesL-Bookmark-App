@@ -17,7 +17,7 @@ const bookmarks = (function(){
           <button class="details">Details</button>
           <span class="rating">Rating: ${bookmark.rating}</span>
           <span class="description">Description: ${bookmark.desc}</span>
-          <span class="bookmark-url">Visit website: ${bookmark.url}</span>
+          <span class="bookmark-url">Visit website: <a class="links" href="url">${bookmark.url}</a></span>
           <button class="delete-bookmark">Delete</button>
         </li>
       `
@@ -120,15 +120,26 @@ const bookmarks = (function(){
         .then(() => {
           store.removeBookmark(bookmarkId);
           renderBookmarks(store.bookmarks);
-        })
-    })
-  }
+        });
+    });
+  };
+
+  const handleVisitWebsite = function(){
+    $('.js-bookmark-list').on('click', '.links', function(e){
+      e.preventDefault();
+      const bookmarkId = $(e.currentTarget).closest('#bookmark-element').attr('data-item-id');
+      const findBookmarkId = store.findBookmarkById(bookmarkId)
+      const visitSiteLink = findBookmarkId.url;
+      window.open(visitSiteLink);
+    });
+  };
 
   const bindEventListeners = function(){
     addBookmarkToggle(),
     handleBookmarkSubmit(),
     handleExpandDetails(),
-    handleDeleteBookmark()
+    handleDeleteBookmark(),
+    handleVisitWebsite()
   }
   return {
     bindEventListeners,
