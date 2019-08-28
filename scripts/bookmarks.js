@@ -13,11 +13,11 @@ const bookmarks = (function(){
     if(bookmark.expanded === true){
       return `
         <li id="bookmark-element" data-item-id="${bookmark.id}">
-          <span class="bookmark-title">${bookmark.title}</span>
+          <span class="bookmark-title">${bookmark.title}</span><br>
+          <span class="rating">Rating: ${bookmark.rating} stars</span><br>
+          <span class="description">Description: ${bookmark.desc}</span><br>
+          <span class="bookmark-url">Visit website: <a class="links" href="url">${bookmark.url}</a></span><br>
           <button class="details">Details</button>
-          <span class="rating">Rating: ${bookmark.rating}</span>
-          <span class="description">Description: ${bookmark.desc}</span>
-          <span class="bookmark-url">Visit website: <a class="links" href="url">${bookmark.url}</a></span>
           <button class="delete-bookmark">Delete</button>
         </li>
       `
@@ -25,9 +25,9 @@ const bookmarks = (function(){
     else{
       return `
       <li id="bookmark-element" data-item-id="${bookmark.id}">
-          <span class="bookmark-title">${bookmark.title}</span>
+          <span class="bookmark-title">${bookmark.title}</span><br>
+          <span class="rating">Rating: ${bookmark.rating} stars</span>
           <button class="details">Details</button>
-          <span class="rating">Rating: ${bookmark.rating}</span>
       </li>
     `}
   }
