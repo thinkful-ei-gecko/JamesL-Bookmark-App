@@ -115,6 +115,21 @@ li {
   float: right;
 }
 
+.addBookmark:hover {
+  background-color: #035afc;
+}
+
+.details:hover {
+  background-color: #035afc;
+}
+
+.delete-bookmark:hover {
+  background-color: red;
+}
+
+.links:hover {
+  color: #035afc;
+}
 
 @media screen and (min-width: 680px){
 
