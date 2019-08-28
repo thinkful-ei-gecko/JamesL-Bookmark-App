@@ -73,6 +73,7 @@ li {
   text-align: center;
 }
 
+
 .addBookmark {
   font-size: 14px;
   border-color: #303030;
@@ -94,6 +95,16 @@ li {
   font-weight: bold;
 }
 
+.section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#bookmark-element {
+  padding: 15px;
+}
+
 
 
 .bookmark-title {
@@ -104,3 +115,26 @@ li {
   float: right;
 }
 
+
+@media screen and (min-width: 680px){
+
+  body {
+    width: 75%;
+    margin: atuo;
+  }
+
+}
+
+@media screen and (min-width: 900px){
+  body {
+    width: 60%;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  body {
+    width: 40%;
+    margin: auto;
+  }
+}

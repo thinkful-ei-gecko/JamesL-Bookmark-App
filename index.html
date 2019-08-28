@@ -9,13 +9,13 @@
   <title>Bookmarks App</title>
 </head>
 <body>
-  <header>
-    <h1>My Bookmarks</h1>
+  <header role="banner">
+    <h1 role="heading">My Bookmarks</h1>
     <p class="error-message"></p>
-    <div class="container">
+    <div class="container" role="navigation">
       <button type="button" class="addBookmark">Add Bookmark</button>
       <label for="ratingSelect" class="filter">Filter by Rating: 
-      <select name="rating" id="ratingSelect">
+      <select name="rating" id="ratingSelect" aria-label="sort">
           <option value="">Show All</option>
           <option value="5">5 stars</option>
           <option value="4">4 stars & up</option>

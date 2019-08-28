@@ -3,14 +3,14 @@
 const bookmarks = (function(){
 
   
-  const generateError = function (message) {
-    return `
-      <section class="error-content">
-        <button id="cancel-error">X</button>
-        <p>${message}</p>
-      </section>
-    `;
-  }
+  // const generateError = function (message) {
+  //   return `
+  //     <section class="error-content">
+  //       <button id="cancel-error">X</button>
+  //       <p>${message}</p>
+  //     </section>
+  //   `;
+  // }
 
   const renderBookmarks = function(bookmarks){
     if(store.error.message){
@@ -37,11 +37,17 @@ const bookmarks = (function(){
     if(bookmark.expanded === true){
       return `
         <li id="bookmark-element" data-item-id="${bookmark.id}">
-          <span class="bookmark-title"><span class="refer">Title: </span>${bookmark.title}</span>
-          <span class="rating"><span class="refer">Rating: </span>${bookmark.rating} stars</span><br>
-          <span class="description"><span class="refer">Description: </span>${bookmark.desc}</span><br>
-          <span class="bookmark-url"><span class="refer">Visit website: </span><a class="links" href="url">${bookmark.url}</a></span><br>
-          <button class="details">Details</button>
+          <div class="section">
+            <span class="bookmark-title"><span class="refer">Title: </span>${bookmark.title}</span>
+            <span class="rating"><span class="refer">Rating: </span>${bookmark.rating} stars</span><br>
+          </div>
+          <div class="section">  
+            <span class="description"><span class="refer">Description: </span>${bookmark.desc}</span><br>
+          </div>
+          <div class="section">
+            <span class="bookmark-url"><span class="refer">Visit website: </span><a class="links" href="url">${bookmark.url}</a></span><br>
+          </div>
+            <button class="details">Details</button>
           <button class="delete-bookmark">Delete</button>
         </li>
       `
@@ -67,15 +73,15 @@ const bookmarks = (function(){
           <legend>Create a Bookmark:</legend>
           <div class="input-group">
             <label for="title">Title:  </label>
-            <input id="title" name="title" type="text" placeholder="Title" required="true" />
+            <input id="title" name="title" type="text" placeholder="Title" required="true" aria-required="true"/>
           </div>
           <div class="input-group">
             <label for="url-input">URL:  </label>
-            <input id="url-input" name="url" type="url" placeholder="https://example.com" />
+            <input id="url-input" name="url" type="url" placeholder="https://example.com" aria-required="true" />
           </div>
           <div class="input-group">
             <label for="description">Description:  </label>
-            <input id="description" name="desc" type="text" placeholder="optional" />
+            <input id="description" name="desc" type="text" placeholder="optional" aria-required="false" />
           </div>
           <form class="input-group" role="radiogroup">
             Rating: <br>
@@ -125,7 +131,7 @@ const bookmarks = (function(){
         .catch((err) => {
           console.log(err)
           store.alertError(err.message);
-          render(store.setError);
+          renderBookmarks(store.setError);
         });
     });
   };
