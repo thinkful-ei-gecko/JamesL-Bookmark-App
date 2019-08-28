@@ -2,12 +2,36 @@
 
 const bookmarks = (function(){
 
+  
+  const generateError = function (message) {
+    return `
+      <section class="error-content">
+        <button id="cancel-error">X</button>
+        <p>${message}</p>
+      </section>
+    `;
+  }
+
   const renderBookmarks = function(bookmarks){
+    if(store.error.message){
+      $('.error-message').append(store.error.message);
+    }else {
+      $('.error-message').empty();
+    }
     const bookmarksHtml = bookmarks.map(bookmark => {
       return generateHtmlBookmark(bookmark);
     }).join('')
     $('.js-bookmark-list').html(bookmarksHtml);
   };
+
+  // function renderError() {
+  //   if (store.setError) {
+  //     const el = generateError(store.setError);
+  //     $('.error-container').html(el);
+  //   } else {
+  //     $('.error-container').empty();
+  //   }
+  // }
 
   const generateHtmlBookmark = function(bookmark){
     if(bookmark.expanded === true){
@@ -51,7 +75,7 @@ const bookmarks = (function(){
           </div>
           <div class="input-group">
             <label for="description">Description:  </label>
-            <input id="description" name="desc" type="text" placeholder="Add description here" />
+            <input id="description" name="desc" type="text" placeholder="optional" />
           </div>
           <form class="input-group" role="radiogroup">
             Rating: <br>
@@ -97,6 +121,11 @@ const bookmarks = (function(){
           store.addBookmark(bookmarkElements);
           renderBookmarks(store.bookmarks);
           $('.bookmark-creator')[0].reset();
+        })
+        .catch((err) => {
+          console.log(err)
+          store.alertError(err.message);
+          render(store.setError);
         });
     });
   };
@@ -118,6 +147,11 @@ const bookmarks = (function(){
         .then(() => {
           store.removeBookmark(bookmarkId);
           renderBookmarks(store.bookmarks);
+        })
+        .catch((err) => {
+          console.log(err)
+          store.alertError(err.message);
+          render(store.setError);
         });
     });
   };
@@ -150,6 +184,8 @@ const bookmarks = (function(){
       $('.js-bookmark-list').html(filteredList);
     });
   };
+
+
 
   const bindEventListeners = function(){
     addBookmarkToggle(),

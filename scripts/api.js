@@ -9,7 +9,7 @@ const api = (function(){
         if (!res.ok) {
           // Valid HTTP response but non-2xx status - let's create an error!
           error = { code: res.status };
-        }
+        };
   
         // In either case, parse the JSON stream:
         return res.json();
@@ -20,7 +20,7 @@ const api = (function(){
         if (error) {
           error.message = data.message;
           return Promise.reject(error);
-        }
+        };
   
         // Otherwise give back the data as resolved Promise
         return data;

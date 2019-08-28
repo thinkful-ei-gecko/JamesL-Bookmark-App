@@ -1,9 +1,11 @@
 'use strict';
 
 const store = (function(){
+  const error = {
+    message: null
+  };
   const bookmarks= [];
   let adding=false;
-  //let editing=null; 
 
   const findBookmarkById = function(id){
     return this.bookmarks.find(bookmark => bookmark.id === id);
@@ -19,6 +21,10 @@ const store = (function(){
     this.bookmarks = this.bookmarks.filter(item => item.id !== id)
   }
 
+  const alertError = function(errMessage){
+    error.message = errMessage;
+  }
+
   return {
     bookmarks,
     adding,
@@ -26,6 +32,7 @@ const store = (function(){
     findBookmarkById,
     addBookmark,
     removeBookmark,
-    
+    error,
+    alertError
   }
 }());
