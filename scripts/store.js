@@ -3,15 +3,7 @@
 const store = (function(){
   const bookmarks= [];
   let adding=false;
-  let editing=null; //should contain id of bookmark selected for editing
-  let minRating=null; //once minRating is set, filter bookmark based on rating
-  
-  // const _toStore = function(bookmark){
-  //   return Object.assign(bookmark, {
-  //     expanded: false, //when true, render full information of bookmark
-
-  //   })
-  // }
+  //let editing=null; 
 
   const findBookmarkById = function(id){
     return this.bookmarks.find(bookmark => bookmark.id === id);
@@ -30,8 +22,7 @@ const store = (function(){
   return {
     bookmarks,
     adding,
-    editing,
-    minRating,
+    // editing,
     findBookmarkById,
     addBookmark,
     removeBookmark,

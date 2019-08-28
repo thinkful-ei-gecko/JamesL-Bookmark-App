@@ -134,12 +134,32 @@ const bookmarks = (function(){
     });
   };
 
+  const generateBookmarkString = function (bookmarkList) {
+    const items = bookmarkList.map((item) => generateHtmlBookmark(item));
+    return items.join('');
+  };  
+
+  const handleRatingFilter = function(){
+    $('#ratingSelect').change(e => {
+      e.preventDefault();
+      const selectedRating = $('#ratingSelect option:selected').val();
+      console.log(selectedRating)
+      if(selectedRating === ""){
+        renderBookmarks(store.bookmarks)
+      }
+      const filteredBookmarks = store.bookmarks.filter(x => x.rating >= selectedRating);
+      const filteredList = generateBookmarkString(filteredBookmarks);
+      $('.js-bookmark-list').html(filteredList);
+    });
+  };
+
   const bindEventListeners = function(){
     addBookmarkToggle(),
     handleBookmarkSubmit(),
     handleExpandDetails(),
     handleDeleteBookmark(),
-    handleVisitWebsite()
+    handleVisitWebsite(),
+    handleRatingFilter()
   }
   return {
     bindEventListeners,
