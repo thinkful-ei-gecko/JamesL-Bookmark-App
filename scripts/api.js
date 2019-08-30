@@ -12,6 +12,7 @@ const api = (function(){
         };
   
         // In either case, parse the JSON stream:
+     
         return res.json();
       })
   
@@ -23,6 +24,7 @@ const api = (function(){
         };
   
         // Otherwise give back the data as resolved Promise
+       
         return data;
       });
   }
