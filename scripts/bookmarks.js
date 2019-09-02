@@ -62,7 +62,7 @@ const bookmarks = (function(){
           </div>
           <div class="input-group">
             <label for="url-input">URL:  </label>
-            <input id="url-input" name="url" type="url" placeholder="https://example.com" aria-required="true" />
+            <input id="url-input" name="url" type="url" placeholder="https://example.com" required="true" aria-required="true" />
           </div>
           <div class="input-group">
             <label for="description">Description:  </label>
